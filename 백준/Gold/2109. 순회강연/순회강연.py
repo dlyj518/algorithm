@@ -1,15 +1,13 @@
-import heapq
+from heapq import *
+
 n = int(input())
-q = []
-t = 0
-for _ in range(n):
+t = [[] for i in range(10001)]
+for i in range(n):
     p, d = map(int, input().split())
-    heapq.heappush(q, (-p, d))
-    t = max(t, d)
-r = [0]*(t+1)
-while q:
-    p, d = heapq.heappop(q)
-    while d > 0:
-        if not r[d]: r[d] = -p; break
-        d -= 1
-print(sum(r))
+    t[d].append(p)
+q = []
+rst = 0
+for i in range(10000, 0, -1):
+    for x in t[i]: heappush(q, -x)
+    if q: rst += -heappop(q)
+print(rst)
