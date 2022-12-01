@@ -7,9 +7,6 @@ for _ in range(m):
     ls.append(set(mb))
 i = 0
 while i < m:
-    aa = ls[i]
-    bb = tr & ls[i]
-    cc = ls[i] - tr
     if tr & ls[i] and ls[i] - tr: tr |= ls[i]; i = 0
     else: i += 1
 for a in ls:
