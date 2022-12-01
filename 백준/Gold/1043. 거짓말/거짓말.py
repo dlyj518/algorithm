@@ -6,7 +6,7 @@ for _ in range(m):
     k, *mb = map(int, input().split())
     ls.append(set(mb))
 i = 0
-while i < len(ls):
+while i < m:
     aa = ls[i]
     bb = tr & ls[i]
     cc = ls[i] - tr
