@@ -1,6 +1,6 @@
 def chkpae(pp, h=0, b=0, i=1):
-    pae = pp[:]
     if h == 1 and b == 4: return True
+    pae = pp[:]
     while i < 10:
         if pae[i] > 0:
             if pae[i] >= 3 and b < 4:
@@ -21,8 +21,7 @@ def chkpae(pp, h=0, b=0, i=1):
 
 ls = list(map(int, input().split()))
 pae = [0]*10
-for i in ls:
-    pae[i] += 1
+for i in ls: pae[i] += 1
 rst = []
 for i in range(1, 10):
     if pae[i] == 4: continue
