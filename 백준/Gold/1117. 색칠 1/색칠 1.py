@@ -1,0 +1,5 @@
+w, h, f, c, a, b, x, y = map(int, input().split())
+t = min(f, w-f)
+n = (x - a) * (y - b)
+m = (min(x, t) - min(a, t)) * (y - b)
+print(w * h - (n + m) * (c + 1))
