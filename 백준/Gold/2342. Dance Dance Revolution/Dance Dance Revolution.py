@@ -9,7 +9,7 @@ def mv(a, b):
 
 def lr(i, l, r):
     global dp
-    if i > len(bt) - 2: return 0
+    if not bt[i]: return 0
     if dp[i][l][r] != -1: return dp[i][l][r]
     dp[i][l][r] = min(lr(i+1, bt[i], r) + mv(l, bt[i]), lr(i+1, l, bt[i]) + mv(r, bt[i]))
     return dp[i][l][r]
