@@ -1,4 +1,4 @@
-from math import log, pi, factorial
+from math import log, pi
 n = int(input())
 if log(n, 10) < 19:
     f = 1
