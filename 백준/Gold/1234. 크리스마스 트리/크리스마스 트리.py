@@ -4,8 +4,8 @@ def dfs(m, rr, gg, bb):
     if m > n: return 1
     if dp[m][rr][gg][bb] != -1: return dp[m][rr][gg][bb]
     c = 0
-    for i in range(min(n, rr)+1):
-        for j in range(min(n-i, gg)+1):
+    for i in range(min(m, rr)+1):
+        for j in range(min(m-i, gg)+1):
             k = m-i-j
             if k > bb or k < 0: continue
             tt = []
