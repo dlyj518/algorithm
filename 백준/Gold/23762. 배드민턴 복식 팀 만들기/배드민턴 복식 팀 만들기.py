@@ -1,6 +1,3 @@
-import sys
-input = sys.stdin.readline
-
 n = int(input())
 st = sorted(enumerate(list(map(int, input().split()))), key=lambda x: x[1])
 idx = []; pl = []
