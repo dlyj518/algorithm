@@ -3,7 +3,7 @@ def mv(x, y):
     if x == 10:
         if y < 3: return 25 + y
         if y == 3: return 23
-        return 26 + y
+        return 24 + y
     if x == 23:
         if y > 4: return 0
         if y == 3: return 20
