@@ -1,31 +1,33 @@
-def ccw(a, b, c): return (b[0] - a[0]) * (c[1] - b[1]) - (c[0] - b[0]) * (b[1] - a[1])
-def pdcw(a, b, c, d): return ccw(a, b, c) * ccw(a, b, d)
-def h(a, b): return (b[1] - a[1]) / (b[0] - a[0])
+def ans(a, b, c, d):
+    print(1)
+    px = (a[0] * b[1] - a[1] * b[0]) * (c[0] - d[0]) - (a[0] - b[0]) * (c[0] * d[1] - c[1] * d[0])
+    py = (a[0] * b[1] - a[1] * b[0]) * (c[1] - d[1]) - (a[1] - b[1]) * (c[0] * d[1] - c[1] * d[0])
+    p = (a[0] - b[0]) * (c[1] - d[1]) - (a[1] - b[1]) * (c[0] - d[0])
+    if p == 0:
+        if b == c and a <= c: print(b[0], b[1])
+        elif a == d and c <= a: print(a[0], a[1])
+    else:
+        x, y = px / p, py / p
+        print(f"{x:.9f} {y:.9f}")
 
-pt = []
-a1, a2, b1, b2 = map(int, input().split())
-c1, c2, d1, d2 = map(int, input().split())
-a, b, c, d = [a1, a2], [b1, b2], [c1, c2], [d1, d2]
-if pdcw(a, b, c, d) <= 0 and pdcw(c, d, a, b) <= 0:
-    if not pdcw(a, b, c, d) and not pdcw(c, d, a, b):
-        if max(a1, b1) >= min(c1, d1) and max(c1, d1) >= min(a1, b1) and\
-            max(a2, b2) >= min(c2, d2) and max(c2, d2) >= min(a2, b2):
-            print(1)
-            if max(a1, b1) == min(c1, d1) and max(a2, b2) == min(c2, d2): print(max(a1, b1), max(a2, b2))
-            elif max(c1, d1) == min(a1, b1) and max(c2, d2) == min(a2, b2): print(min(a1, b1), min(a2, b2))
-            elif ccw(a, b, d) * ccw(c, d, a) or ccw(a, b, c) * ccw(c, d, a): print(*b)
-            elif ccw(a, b, d) * ccw(c, d, b) or ccw(a, b, c) * ccw(c, d, b): print(*a)
+def ccw(a, b, c):
+    tmp = a[0] * b[1] + b[0] * c[1] + c[0] * a[1]
+    tmp -= b[0] * a[1] + c[0] * b[1] + a[0] * c[1]    
+    if not tmp: return 0
+    else: return tmp // abs(tmp)
+
+def solve(a, b, c, d):
+    ans1 = ccw(a, b, c) * ccw(a, b, d)
+    ans2 = ccw(c, d, a) * ccw(c, d, b)    
+    if not (ans1 or ans2):
+        if a > b: a, b = b, a
+        if c > d: c, d = d, c    
+        if a <= d and b >= c: ans(a, b, c, d)
         else: print(0)
     else:
-        print(1)
-        if a1 != b1 and c1 != d1:
-            h1 = h(a, b); h2 = h(c, d)
-            x = (c2 - a2 + h1 * a1 - h2 * c1) / (h1 - h2)
-            print(x, h1 * x + a2 - h1 * a1)
-        elif a1 == b1:
-            h1 = h(c, d)
-            print(a1, h1 * a1 + c2 - h1 * c1)
-        else:
-            h1 = h(a, b)
-            print(c1, h1 * c1 + a2 - h1 * a1)
-else: print(0)
+        if ans1 <= 0 and ans2 <= 0: ans(a, b, c, d)
+        else: print(0)
+
+x1, y1, x2, y2 = map(int, input().split())
+x3, y3, x4, y4 = map(int, input().split())
+solve((x1, y1), (x2, y2), (x3, y3), (x4, y4))
