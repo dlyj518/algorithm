@@ -1,12 +1,13 @@
-mx = 1000001
-nm = [1] * mx
-nm[0:2] = [0] * 3
-for i in range(4, mx, 2): nm[i] = 0
-for i in range(3, 1001, 2):
+import sys
+input = sys.stdin.readline
+
+mx = 1000000
+nm = [1] * (mx + 1)
+for i in range(2, int(mx ** .5) + 1):
     if nm[i]:
-        for j in range(i * 2, mx, i): nm[j] = 0
+        nm[i*2::i] = [0] * ((mx - i) // i)
 while 1:
     n = int(input())
     if not n: break
-    for i in range(3, n//2+1, 2):
-        if nm[i] and nm[n-i]: print(n, '=', i, '+', n-i); break
+    for i in range(3, n // 2 + 1, 2):
+        if nm[i] and nm[n-i]: print(f'{n} = {i} + {n - i}'); break
