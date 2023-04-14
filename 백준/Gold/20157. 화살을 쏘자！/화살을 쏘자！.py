@@ -1,4 +1,6 @@
 from math import gcd
+import sys
+input = sys.stdin.readline
 n = int(input())
 dt = {}
 mx = 1
