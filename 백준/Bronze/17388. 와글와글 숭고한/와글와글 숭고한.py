@@ -1,0 +1,5 @@
+s, k, h = map(int, input().split())
+if s + h + k >= 100: print('OK')
+elif s < h and s < k: print('Soongsil')
+elif k < s and k < h: print('Korea')
+else: print('Hanyang')
