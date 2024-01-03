@@ -1,23 +1,22 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(600000)
 
-def dfs(x,n=0):
-    global cnt
-    vs[x] = 1
-    chk = 1
-    for a in eg[x]:
-        if not vs[a]: chk = 0; dfs(a,n+1)
-    if chk == 1: cnt += n
+def dfs(x, a):
+    global r
+    ch[x] = 0
+    c = 1
+    for i in tr[x]:
+        if ch[i]: dfs(i, a + 1); c = 0
+    if c: r += a
 
 n = int(input())
-vs = [0]*(n+1)
-eg = [[] for _ in range(n+1)]
-for i in range(n-1):
+tr = [[] for _ in range(n + 1)]
+dp = [0] * (n + 1)
+ch = [1] * (n + 1)
+for _ in range(n - 1):
     a, b = map(int, input().split())
-    eg[a].append(b)
-    eg[b].append(a)
-cnt = 0
-dfs(1)
-yn = 'No' if cnt % 2 == 0 else 'Yes'
-print(yn)
+    tr[a].append(b); tr[b].append(a)
+r = 0
+dfs(1, 0)
+print('Yes') if r % 2 else print('No')
