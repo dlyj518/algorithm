@@ -1,6 +1,5 @@
 import sys
 input = sys.stdin.readline
-sys.setrecursionlimit(600000)
 
 n = int(input())
 tr = [[] for _ in range(n + 1)]
