@@ -1,10 +1,12 @@
 n, s, r = map(int, input().split())
-ss = list(map(int, input().split()))
-rr = list(map(int, input().split()))
-ls = [0] * (n + 1)
-for i in ss: ls[i] = 1
-for i in rr:
-    if ls[i]: ls[i] = 0
-    elif ls[i - 1]: ls[i - 1] = 0
-    elif i < n and ls[i + 1]: ls[i + 1] = 0
-print(sum(ls))
+s = sorted(list(map(int, input().split())))
+r = list(map(int, input().split()))
+x = 0
+for i in r:
+    if i in s: r.remove(i); s.remove(i)
+for i in s:
+    if i in r: r.remove(i)
+    elif i - 1 in r: r.remove(i - 1)
+    elif i + 1 in r: r.remove(i + 1)
+    else: x += 1
+print(x)
