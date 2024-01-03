@@ -12,7 +12,6 @@ def dfs(x, a):
 
 n = int(input())
 tr = [[] for _ in range(n + 1)]
-dp = [0] * (n + 1)
 ch = [1] * (n + 1)
 for _ in range(n - 1):
     a, b = map(int, input().split())
