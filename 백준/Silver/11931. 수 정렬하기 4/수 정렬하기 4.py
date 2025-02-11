@@ -1,5 +1,6 @@
 import sys
-x = []
-for i in range(int(input())): x.append(int(sys.stdin.readline()))
-x.sort(reverse=True)
-for i in x: print(i)
+input = sys.stdin.readline
+ls = []
+for i in range(int(input())): ls.append(int(input()))
+ls.sort()
+for i in range(len(ls)): print(ls[-1 - i])
