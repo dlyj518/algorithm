@@ -1,9 +1,7 @@
-import math
-
 n = int(input())
 aa = list(map(int, input().split()))
 bs = []
-l = int(math.log2(max(aa)))
+l = max(aa).bit_length() - 1
 a = 0
 for i in range(l, -1, -1):
     x = 1 if not (aa[a] & (1 << i)) else 0
